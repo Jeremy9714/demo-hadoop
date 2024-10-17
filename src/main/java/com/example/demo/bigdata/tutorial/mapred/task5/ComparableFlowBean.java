@@ -1,9 +1,10 @@
-package com.example.demo.bigdata.tutorial.mapred.task2;
+package com.example.demo.bigdata.tutorial.mapred.task5;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -11,17 +12,24 @@ import java.io.IOException;
 
 /**
  * @author Chenyang
- * @create 2024-10-16 13:26
+ * @create 2024-10-16 19:59
  * @description
  */
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlowBean implements Writable {
+@Data
+public class ComparableFlowBean implements WritableComparable<ComparableFlowBean> {
 
     private long upFlow;
+
     private long downFlow;
+
     private long sumFlow;
+
+    @Override
+    public int compareTo(ComparableFlowBean o) {
+        return o.getSumFlow() == sumFlow ? Long.compare(upFlow, o.getUpFlow()) : Long.compare(o.getSumFlow(), sumFlow);
+    }
 
     @Override
     public void write(DataOutput out) throws IOException {
@@ -43,6 +51,6 @@ public class FlowBean implements Writable {
 
     @Override
     public String toString() {
-        return upFlow + "\t" + downFlow + "\t" + sumFlow;
+        return this.upFlow + "\t" + this.downFlow + "\t" + this.sumFlow;
     }
 }
