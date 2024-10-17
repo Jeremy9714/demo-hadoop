@@ -79,6 +79,7 @@ public class YarnWordCount implements Tool {
             for (IntWritable value : values) {
                 sum += value.get();
             }
+            valueOut.set(sum);
             context.write(key, valueOut);
         }
     }
