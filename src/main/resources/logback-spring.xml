@@ -42,10 +42,10 @@
         <!-- 日志输出目的地 -->
         <appender-ref ref="STDOUT"></appender-ref>
     </logger>
-<!--    <logger name="org.apache.dubbo" level="WARN">-->
-<!--        <appender-ref ref="FILE"></appender-ref>-->
-<!--    </logger>-->
-<!--    <logger name="org.apache.hadoop" level="ERROR"/>-->
+    <!--    <logger name="org.apache.dubbo" level="WARN">-->
+    <!--        <appender-ref ref="FILE"></appender-ref>-->
+    <!--    </logger>-->
+    <!--    <logger name="org.apache.hadoop" level="ERROR"/>-->
     <logger name="org.springframework" level="ERROR"/>
 
     <!--根root logger -->
