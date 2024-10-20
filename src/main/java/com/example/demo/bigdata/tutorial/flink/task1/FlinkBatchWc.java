@@ -9,13 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @Description: flink wc测试
+ * @Description: flink 1.10.1 批处理
  * @Author: Chenyang on 2024/10/19 11:03
  * @Version: 1.0
  */
-public class FlinkWordCount {
+public class FlinkBatchWc {
 
-    private static Logger log = LoggerFactory.getLogger(FlinkWordCount.class);
+    private static Logger log = LoggerFactory.getLogger(FlinkBatchWc.class);
 
     public static void main(String[] args) throws Exception {
         // 创建执行环境
