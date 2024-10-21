@@ -1,4 +1,4 @@
-package com.example.demo.bigdata.tutorial.flink.task1;
+package com.example.demo.bigdata.tutorial.flink.chapter1_basic.task1;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;

@@ -1,10 +1,8 @@
-package com.example.demo.bigdata.tutorial.flink.task5;
+package com.example.demo.bigdata.tutorial.flink.chapter1_basic.task5;
 
 import com.example.demo.bigdata.common.util.CTools;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.api.java.utils.MultipleParameterTool;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;

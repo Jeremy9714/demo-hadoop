@@ -78,6 +78,11 @@
             <artifactId>flink-clients_${scala.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka_${scala.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
         <!-- lombok 插件 -->
         <dependency>
             <groupId>org.projectlombok</groupId>

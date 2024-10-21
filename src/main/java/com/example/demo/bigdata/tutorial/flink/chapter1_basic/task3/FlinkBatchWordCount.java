@@ -1,4 +1,4 @@
-package com.example.demo.bigdata.tutorial.flink.task3;
+package com.example.demo.bigdata.tutorial.flink.chapter1_basic.task3;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.ExecutionEnvironment;

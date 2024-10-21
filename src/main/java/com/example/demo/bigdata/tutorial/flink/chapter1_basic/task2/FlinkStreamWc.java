@@ -1,10 +1,8 @@
-package com.example.demo.bigdata.tutorial.flink.task2;
+package com.example.demo.bigdata.tutorial.flink.chapter1_basic.task2;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 

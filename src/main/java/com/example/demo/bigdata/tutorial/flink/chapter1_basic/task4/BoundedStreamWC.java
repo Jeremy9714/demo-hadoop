@@ -1,4 +1,4 @@
-package com.example.demo.bigdata.tutorial.flink.task4;
+package com.example.demo.bigdata.tutorial.flink.chapter1_basic.task4;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
