@@ -36,11 +36,22 @@ public class EventGenerator {
         list.add(new SourceEvent2("Bob", "/home", 2000L));
         list.add(new SourceEvent2("Mary", "/prod", 3000L));
         list.add(new SourceEvent2("Bob", "/prod", 3300L));
+        list.add(new SourceEvent2("Alice", "/home", 1000L));
+        list.add(new SourceEvent2("Alice", "/home", 1000L));
         list.add(new SourceEvent2("Bob", "/cart", 3500L));
         list.add(new SourceEvent2("Bob", "/prod?id=2", 3200L));
         list.add(new SourceEvent2("Mary", "/cart", 3800L));
         list.add(new SourceEvent2("Mary", "/prod?id=3", 5200L));
         list.add(new SourceEvent2("Mary", "/prod?id=4", 4200L));
+        return list;
+    }
+
+    public static List<FlinkEvent> getFlinkEventList() {
+        List<FlinkEvent> list = new ArrayList<>();
+        list.add(new FlinkEvent("1","Jeremy",27));
+        list.add(new FlinkEvent("2","Sean",18));
+        list.add(new FlinkEvent("3","Melissa",26));
+        list.add(new FlinkEvent("4","Tom",30));
         return list;
     }
 }
