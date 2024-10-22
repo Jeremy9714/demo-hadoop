@@ -15,7 +15,7 @@ import org.apache.flink.util.Collector;
 import java.sql.Timestamp;
 
 /**
- * @Description: window用例
+ * @Description: window用例 统计10s内url访问次数
  * @Author: Chenyang on 2024/10/22 21:34
  * @Version: 1.0
  */
