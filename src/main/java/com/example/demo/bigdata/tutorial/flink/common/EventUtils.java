@@ -92,7 +92,7 @@ public class EventUtils {
                     "/index",
                     "/cart"
             };
-            
+
             while (running) {
                 ctx.collect(new SourceEvent2(names[random.nextInt(names.length)],
                         urls[random.nextInt(urls.length)],
@@ -149,6 +149,18 @@ public class EventUtils {
         }
     }
 
+    public static MyWatermarkStrategy getMyPunctuatedWatermarkStrategy() {
+        return new MyWatermarkStrategy(new MyPunctuatedWatermarkGenerator());
+    }
+
+    public static MyWatermarkStrategy getMyPeriodicWatermarkStrategy() {
+        return new MyWatermarkStrategy(new MyPeriodicWatermarkGenerator());
+    }
+
+    public static MyWatermarkStrategy getMyPeriodicWatermarkStrategy(long delayTime) {
+        return new MyWatermarkStrategy(new MyPeriodicWatermarkGenerator(delayTime));
+    }
+
     // 自定义水位线策略
     public static class MyWatermarkStrategy implements WatermarkStrategy<SourceEvent2> {
 
@@ -173,12 +185,18 @@ public class EventUtils {
     }
 
     // 自定义周期性水位线生成器
+    @NoArgsConstructor
     public static class MyPeriodicWatermarkGenerator implements WatermarkGenerator<SourceEvent2> {
 
         // 延迟时间
         private long delayTime = 5000L;
         // 最大时间戳
         private long maxTs = Long.MIN_VALUE + delayTime + 1L;
+
+        public MyPeriodicWatermarkGenerator(long delayTime) {
+            super();
+            this.delayTime = delayTime;
+        }
 
         // 断点式
         @Override
