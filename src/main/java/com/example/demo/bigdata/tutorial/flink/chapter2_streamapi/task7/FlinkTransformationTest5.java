@@ -1,8 +1,7 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task7;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent1;
-import com.example.demo.bigdata.tutorial.flink.common.SourceEvent2;
 import org.apache.flink.api.common.functions.Partitioner;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -21,7 +20,7 @@ public class FlinkTransformationTest5 {
         env.setParallelism(1);
 
 //        DataStreamSource<SourceEvent2> dataStream1 = env.fromCollection(EventGenerator.getEvent2List());
-        DataStreamSource<SourceEvent1> dataStream1 = env.fromCollection(EventGenerator.getEvent1List());
+        DataStreamSource<SourceEvent1> dataStream1 = env.fromCollection(EventUtils.getEvent1List());
 
         // 随机分区
 //        dataStream1.shuffle().print().setParallelism(4);

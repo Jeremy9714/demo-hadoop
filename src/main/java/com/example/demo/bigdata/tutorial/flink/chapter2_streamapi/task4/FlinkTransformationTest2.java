@@ -1,10 +1,9 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task4;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent1;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
-import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
@@ -17,7 +16,7 @@ public class FlinkTransformationTest2 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        DataStreamSource<SourceEvent1> dataStream = env.fromCollection(EventGenerator.getEvent1List());
+        DataStreamSource<SourceEvent1> dataStream = env.fromCollection(EventUtils.getEvent1List());
 
         // keyBy
         // max 只更新最大值字段

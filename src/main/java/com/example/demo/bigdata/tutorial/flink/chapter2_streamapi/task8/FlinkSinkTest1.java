@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task8;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent2;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.core.fs.Path;
@@ -21,7 +21,7 @@ public class FlinkSinkTest1 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(4);
 
-        DataStreamSource<SourceEvent2> inputStream = env.fromCollection(EventGenerator.getEvent2List());
+        DataStreamSource<SourceEvent2> inputStream = env.fromCollection(EventUtils.getEvent2List());
 
         // fileSink
         StreamingFileSink<String> streamingFileSink = StreamingFileSink.<String>forRowFormat(new Path("D:\\workplace\\2021-2024\\workplace\\test\\hadoop\\demo-hadoop\\src\\main\\resources\\files\\flink\\output\\output"),

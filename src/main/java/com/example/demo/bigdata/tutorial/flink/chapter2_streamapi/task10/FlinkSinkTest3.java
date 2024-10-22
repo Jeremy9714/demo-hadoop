@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task10;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.FlinkEvent;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -20,7 +20,7 @@ public class FlinkSinkTest3 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        DataStreamSource<FlinkEvent> dataStream = env.fromCollection(EventGenerator.getFlinkEventList());
+        DataStreamSource<FlinkEvent> dataStream = env.fromCollection(EventUtils.getFlinkEventList());
 
         // 建立jedis连接
         FlinkJedisPoolConfig redisConfig = new FlinkJedisPoolConfig.Builder()

@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @Author: Chenyang on 2024/10/21 11:08
  * @Version: 1.0
  */
-public class EventGenerator {
+public class EventUtils {
 
     public static List<SourceEvent1> getEvent1List() {
         List<SourceEvent1> list = new ArrayList<>();
@@ -152,7 +152,7 @@ public class EventGenerator {
     // 自定义水位线策略
     public static class MyWatermarkStrategy implements WatermarkStrategy<SourceEvent2> {
 
-        private WatermarkGenerator<SourceEvent2> watermarkGenerator;
+        private static WatermarkGenerator<SourceEvent2> watermarkGenerator;
 
         public MyWatermarkStrategy(WatermarkGenerator<SourceEvent2> watermarkGenerator) {
             super();

@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task5;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent2;
 import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.typeinfo.TypeHint;
@@ -19,7 +19,7 @@ public class FlinkTransformationTest3 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        DataStreamSource<SourceEvent2> dataStream = env.fromCollection(EventGenerator.getEvent2List());
+        DataStreamSource<SourceEvent2> dataStream = env.fromCollection(EventUtils.getEvent2List());
 
         // 聚合获取总和
         SingleOutputStreamOperator<Tuple2<String, Long>> reducedStream = dataStream.map(item -> Tuple2.of(item.getName(), 1L))

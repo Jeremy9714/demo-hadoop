@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter3_watermark.task1;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent2;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -25,7 +25,7 @@ public class FlinkWatermarksTest1 {
         env.getConfig().setAutoWatermarkInterval(100);
 
         // 有序流
-        env.fromCollection(EventGenerator.getEvent2List())
+        env.fromCollection(EventUtils.getEvent2List())
                 // 有序流生成策略
                 .assignTimestampsAndWatermarks(
                         // 设置WatermarkGenerator生成watermark逻辑
@@ -41,7 +41,7 @@ public class FlinkWatermarksTest1 {
                 );
 
         // 乱序流
-        env.fromCollection(EventGenerator.getEvent2List())
+        env.fromCollection(EventUtils.getEvent2List())
                 // 乱序留生成策略
                 .assignTimestampsAndWatermarks(
                         // 设置WatermarkGenerator生成watermark逻辑

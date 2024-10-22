@@ -1,9 +1,8 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task12;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.FlinkEvent;
 import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
-import org.apache.flink.connector.jdbc.JdbcExecutionOptions;
 import org.apache.flink.connector.jdbc.JdbcSink;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -18,7 +17,7 @@ public class FlinkSinkTest5 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        DataStreamSource<FlinkEvent> dataStream = env.fromCollection(EventGenerator.getFlinkEventList());
+        DataStreamSource<FlinkEvent> dataStream = env.fromCollection(EventUtils.getFlinkEventList());
 
         // 配置JdbcSink
         dataStream.addSink(JdbcSink.sink("insert into from_flink values(?,?,?)",

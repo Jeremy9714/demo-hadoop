@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task3;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent1;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.FlatMapFunction;
@@ -23,7 +23,7 @@ public class FlinkTransformationTest1 {
 //        DataStream<SourceEvent1> dataStream = env.fromElements(new SourceEvent1(1, "Jean", 1000L),
 //                new SourceEvent1(2, "Joe", 2000L),
 //                new SourceEvent1(3, "Sean", 3000L));
-        DataStream<SourceEvent1> dataStream = env.fromCollection(EventGenerator.getEvent1List());
+        DataStream<SourceEvent1> dataStream = env.fromCollection(EventUtils.getEvent1List());
 
         // map算子
         DataStream<String> mappedStream = dataStream.map(new MyMapper());

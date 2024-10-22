@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter2_streamapi.task6;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent2;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.configuration.Configuration;
@@ -18,7 +18,7 @@ public class FlinkTransformationTest4 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        DataStreamSource<SourceEvent2> dataStream = env.fromCollection(EventGenerator.getEvent2List());
+        DataStreamSource<SourceEvent2> dataStream = env.fromCollection(EventUtils.getEvent2List());
         dataStream.map(new MyRichMapper()).print().setParallelism(2);
 
         env.execute();

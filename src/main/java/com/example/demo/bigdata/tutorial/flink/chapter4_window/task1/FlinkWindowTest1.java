@@ -1,6 +1,6 @@
 package com.example.demo.bigdata.tutorial.flink.chapter4_window.task1;
 
-import com.example.demo.bigdata.tutorial.flink.common.EventGenerator;
+import com.example.demo.bigdata.tutorial.flink.common.EventUtils;
 import com.example.demo.bigdata.tutorial.flink.common.SourceEvent2;
 import org.apache.flink.api.common.eventtime.*;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -12,7 +12,7 @@ import org.apache.flink.streaming.api.windowing.assigners.*;
 import org.apache.flink.streaming.api.windowing.time.Time;
 
 /**
- * @Description: window
+ * @Description: window reduce
  * @Author: Chenyang on 2024/10/22 11:46
  * @Version: 1.0
  */
@@ -22,7 +22,7 @@ public class FlinkWindowTest1 {
         env.setParallelism(1);
 
 //        DataStream<FlinkEvent> dataStream = env.addSource(EventGenerator.getSourceFunction());
-        SingleOutputStreamOperator<SourceEvent2> dataStream = env.addSource(EventGenerator.getSourceFunction2())
+        SingleOutputStreamOperator<SourceEvent2> dataStream = env.addSource(EventUtils.getSourceFunction2())
 //                .assignTimestampsAndWatermarks(WatermarkStrategy.<SourceEvent2>forBoundedOutOfOrderness(Duration.ZERO)
                 .assignTimestampsAndWatermarks(WatermarkStrategy.<SourceEvent2>forMonotonousTimestamps()
                         .withTimestampAssigner((SerializableTimestampAssigner<SourceEvent2>) (element, recordTimestamp) -> element.getTimestamp())
