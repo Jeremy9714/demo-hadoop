@@ -45,6 +45,11 @@ public class FlinkWindowTest6 {
                 .maxBy("vc")
                 .print(">>>");
 
+//        dataStream.windowAll(TumblingEventTimeWindows.of(Time.seconds(10)))
+//                .trigger(new MyTrigger())
+//                .maxBy("vc")
+//                .print();
+        
         System.out.println("=====任务提交=====");
         env.execute();
     }
@@ -74,7 +79,7 @@ public class FlinkWindowTest6 {
         @Override
         public TriggerResult onEventTime(long time, TimeWindow window, TriggerContext ctx) throws Exception {
             if (time == window.maxTimestamp()) {
-                // 清除
+                // 清除处理时间timer
                 ctx.deleteProcessingTimeTimer(window.maxTimestamp() + 10000L);
                 return TriggerResult.FIRE;
             } else {
