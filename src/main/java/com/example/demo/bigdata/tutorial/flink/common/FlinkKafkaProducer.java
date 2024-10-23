@@ -1,4 +1,4 @@
-package com.example.demo.bigdata.tutorial.flink.chapter4_window.task6;
+package com.example.demo.bigdata.tutorial.flink.common;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;

@@ -1,18 +1,16 @@
 package com.example.demo.bigdata.tutorial.flink.common;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.apache.flink.api.common.eventtime.*;
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.functions.source.ParallelSourceFunction;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
-import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @Description:
@@ -227,6 +225,29 @@ public class EventUtils {
         @Override
         public void onPeriodicEmit(WatermarkOutput output) {
             // 无需执行
+        }
+    }
+
+    // flink kafka source
+    public static FlinkKafkaConsumer<String> getKafkaSource(String bootstrapServers, String topics) {
+        Properties props = new Properties();
+        props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "flink-group");
+        props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+        props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        return new FlinkKafkaConsumer<>(topics, new SimpleStringSchema(), props);
+    }
+
+    public static WaterSensorMapper getWaterSensorMapper() {
+        return new WaterSensorMapper();
+    }
+
+    public static class WaterSensorMapper implements MapFunction<String, WaterSensor> {
+        @Override
+        public WaterSensor map(String value) throws Exception {
+            String[] split = value.split(",");
+            return new WaterSensor(split[0], Double.parseDouble(split[1]), Long.parseLong(split[2]));
         }
     }
 

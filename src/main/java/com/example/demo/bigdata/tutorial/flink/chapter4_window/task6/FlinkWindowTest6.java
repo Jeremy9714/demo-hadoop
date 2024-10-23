@@ -31,7 +31,7 @@ public class FlinkWindowTest6 {
         consumerConfig.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         consumerConfig.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-        SingleOutputStreamOperator<WaterSensor> dataStream = env.addSource(new FlinkKafkaConsumer<String>("from-flink", new SimpleStringSchema(), consumerConfig))
+        SingleOutputStreamOperator<WaterSensor> dataStream = env.addSource(new FlinkKafkaConsumer<>("from-flink", new SimpleStringSchema(), consumerConfig))
                 .map(line -> {
                     String[] words = line.split(",");
                     return new WaterSensor(words[0], Double.parseDouble(words[1]), Long.parseLong(words[2]));
