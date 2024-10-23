@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UrlCountEntity {
+public class UrlCountEntity implements Comparable<UrlCountEntity> {
 
     private String url;
     private long count;
@@ -25,5 +25,10 @@ public class UrlCountEntity {
     public String toString() {
         return "UrlCountEntity{url=" + url + ", count=" + count + ", windowStart=" +
                 new Timestamp(windowStart) + ", windowEnd=" + new Timestamp(windowEnd) + "}";
+    }
+
+    @Override
+    public int compareTo(UrlCountEntity o) {
+        return o.getCount() == count ? (url.length() - o.getUrl().length()) : Long.compare(o.getCount(), count);
     }
 }
