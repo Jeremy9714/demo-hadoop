@@ -1,0 +1,16 @@
+Jeremy,/administrator,1000
+Sean,/cart,11000
+Jeremy,/home,4000
+Luke,/home,2000
+Mary,/prod?id=1,5500
+Michael,/admin,6000
+Jeremy,/home,3000
+Jason,/prod?id=2,10000
+Andrew,/index,12000
+Mary,/index,15500
+Melissa,/index,15000
+Jason,/cart,8000
+Biden,/home,20000
+Sean,/prod?id=3,30000
+Jeremy,/index,31000
+Jason,/index,10000

@@ -6,11 +6,13 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.functions.source.ParallelSourceFunction;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
+import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @Description:
@@ -248,6 +250,28 @@ public class EventUtils {
         public WaterSensor map(String value) throws Exception {
             String[] split = value.split(",");
             return new WaterSensor(split[0], Double.parseDouble(split[1]), Long.parseLong(split[2]));
+        }
+    }
+
+    public static LongSource getLongSource() {
+        return new LongSource();
+    }
+
+    public static class LongSource implements SourceFunction<Long> {
+        private boolean running = true;
+        private AtomicLong value = new AtomicLong(0L);
+
+        @Override
+        public void run(SourceContext<Long> ctx) throws Exception {
+
+            while (running) {
+                ctx.collect(value.incrementAndGet());
+            }
+        }
+
+        @Override
+        public void cancel() {
+            running = false;
         }
     }
 
